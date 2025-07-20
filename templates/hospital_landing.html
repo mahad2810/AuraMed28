@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraMed - Healthcare Management for Hospitals</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --primary: #33AB9F;
+        --primary-light: #4FC1AF;
+        --secondary: #CC543F;
+        --accent: #00C9A7;
+        --light: #F5FFFE;
+        --dark: #001919;
+        --gray: #666;
+      }
+
+      body {
+          font-family: 'Poppins', sans-serif;
+          color: var(--dark);
+          background-color: var(--light);
+          overflow-x: hidden;
+      }
+  
+      h1, h2, h3, h4, h5 {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 600;
+      }
+  
+      .btn-primary {
+          background-color: var(--primary);
+          border-color: var(--primary);
+          color: white;
+          border-radius: 30px;
+          padding: 10px 25px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+      }
+  
+      .btn-primary:hover {
+          background-color: var(--primary-light);
+          border-color: var(--primary-light);
+          transform: translateY(-3px);
+          box-shadow: 0 10px 20px rgba(51, 171, 159, 0.2);
+      }
+  
+      .btn-secondary {
+          background-color: var(--dark);
+          border-color: var(--dark);
+          color: white;
+          border-radius: 30px;
+          padding: 10px 25px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+      }
+  
+      .btn-secondary:hover {
+          background-color: #555;
+          border-color: #555;
+          transform: translateY(-3px);
+          box-shadow: 0 10px 20px rgba(102, 102, 102, 0.2);
+      }
+  
+      .btn-outline {
+          background-color: transparent;
+          border: 2px solid var(--primary);
+          color: var(--primary);
+          border-radius: 30px;
+          padding: 9px 24px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+      }
+  
+      .btn-outline:hover {
+          background-color: var(--primary);
+          color: white;
+          transform: translateY(-3px);
+          box-shadow: 0 10px 20px rgba(51, 171, 159, 0.2);
+      }
+  
+      .navbar {
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        padding: 15px 0;
+      }
+    
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: 1.8rem;
+        color: var(--primary);
+        text-decoration: none;
+      }
+    
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+    
+      .logo-img {
+        height: 40px;
+        width: auto;
+        margin-right: 10px;
+      }
+    
+      .logo-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+    
+      .nav-link {
+        color: var(--dark);
+        font-weight: 500;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+      }
+    
+      .nav-link:hover {
+        color: var(--primary);
+      }
+  
+      .hero {
+          padding: 120px 0 80px;
+          background: var(--light);
+          position: relative;
+          overflow: hidden;
+      }
+  
+      .hero h1 {
+          font-size: 3.5rem;
+          font-weight: 700;
+          margin-bottom: 20px;
+          line-height: 1.2;
+          color: var(--dark);
+      }
+  
+      .hero p {
+          font-size: 1.2rem;
+          color: var(--gray);
+          margin-bottom: 30px;
+      }
+
+      .feature-card {
+          background: white;
+          border-radius: 15px;
+          padding: 30px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+          transition: all 0.3s ease;
+          height: 100%;
+      }
+  
+      .feature-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+  
+      .feature-icon {
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 20px;
+          font-size: 1.8rem;
+      }
+  
+      .icon-primary {
+          background-color: rgba(51, 171, 159, 0.1);
+          color: var(--primary);
+      }
+  
+      .icon-secondary {
+          background-color: rgba(204, 84, 63, 0.1);
+          color: var(--secondary);
+      }
+  
+      .icon-accent {
+          background-color: rgba(0, 201, 167, 0.1);
+          color: var(--accent);
+      }
+
+      .stats-card {
+          background: white;
+          border-radius: 15px;
+          padding: 30px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+          text-align: center;
+          height: 100%;
+      }
+  
+      .stats-number {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: var(--primary);
+          margin-bottom: 10px;
+      }
+  
+      .cta {
+          background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+          padding: 80px 0;
+          color: white;
+          border-radius: 15px;
+          margin: 80px 0;
+      }
+  
+      .cta h2 {
+          font-size: 2.5rem;
+          margin-bottom: 20px;
+      }
+  
+      .cta .btn-light {
+          background: white;
+          color: var(--primary);
+          font-weight: 600;
+          border-radius: 30px;
+          padding: 12px 30px;
+          transition: all 0.3s ease;
+      }
+  
+      .cta .btn-light:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+      }
+  
+      footer {
+          background-color: var(--light);
+          padding: 80px 0 30px;
+      }
+  
+      .footer-heading {
+          font-size: 1.3rem;
+          font-weight: 600;
+          margin-bottom: 25px;
+      }
+  
+      .footer-link {
+          display: block;
+          color: var(--gray);
+          margin-bottom: 15px;
+          transition: all 0.3s ease;
+          text-decoration: none;
+      }
+  
+      .footer-link:hover {
+          color: var(--primary);
+          transform: translateX(5px);
+      }
+  
+      .social-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: white;
+          color: var(--primary);
+          margin-right: 10px;
+          transition: all 0.3s ease;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+  
+      .social-icon:hover {
+          background-color: var(--primary);
+          color: white;
+          transform: translateY(-3px);
+      }
+  
+      .copyright {
+          color: var(--gray);
+          font-size: 0.9rem;
+          margin-top: 50px;
+      }
+  
+      /* Animation classes */
+      .fade-in {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+  
+      .fade-in.active {
+          opacity: 1;
+          transform: translateY(0);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 1200px) {
+          .hero h1 {
+              font-size: 3rem;
+          }
+          .feature-card {
+              padding: 20px;
+          }
+      }
+
+      @media (max-width: 992px) {
+          .hero h1 {
+              font-size: 2.5rem;
+          }
+          .hero p {
+              font-size: 1.1rem;
+          }
+          .feature-card {
+              margin-bottom: 20px;
+          }
+          .stats-card {
+              margin-bottom: 20px;
+          }
+          .cta {
+              padding: 60px 0;
+          }
+      }
+
+      @media (max-width: 768px) {
+          .navbar {
+              padding: 10px 0;
+          }
+          .navbar-brand {
+              font-size: 1.5rem;
+          }
+          .hero {
+              padding: 100px 0 60px;
+              text-align: center;
+          }
+          .hero h1 {
+              font-size: 2rem;
+          }
+          .hero p {
+              font-size: 1rem;
+          }
+          .hero-img {
+              margin-top: 30px;
+          }
+          .feature-card {
+              padding: 15px;
+          }
+          .feature-icon {
+              width: 50px;
+              height: 50px;
+              font-size: 1.4rem;
+          }
+          .cta {
+              padding: 40px 0;
+              margin: 40px 0;
+          }
+          .cta h2 {
+              font-size: 2rem;
+          }
+          .footer-heading {
+              font-size: 1.2rem;
+          }
+          .social-icon {
+              width: 35px;
+              height: 35px;
+          }
+      }
+
+      @media (max-width: 576px) {
+          .navbar-brand {
+              font-size: 1.3rem;
+          }
+          .logo-img {
+              height: 30px;
+          }
+          .hero h1 {
+              font-size: 1.8rem;
+          }
+          .hero p {
+              font-size: 0.9rem;
+          }
+          .btn {
+              padding: 8px 20px;
+              font-size: 0.9rem;
+          }
+          .feature-card {
+              padding: 12px;
+          }
+          .feature-icon {
+              width: 40px;
+              height: 40px;
+              font-size: 1.2rem;
+          }
+          .stats-number {
+              font-size: 2rem;
+          }
+          .cta h2 {
+              font-size: 1.8rem;
+          }
+          .footer {
+              padding: 40px 0 20px;
+          }
+      }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="logo d-flex align-items-center">
+                    <img src="static/AuraMedlogo.png" alt="AuraMed Logo" class="logo-img me-2" />
+                    <span class="logo-name">AuraMed</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#benefits">Benefits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a class="btn btn-primary" id="loginButton">Sign In</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a class="btn btn-outline" id="registerButton">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 fade-in">
+                    <h1>Healthcare Management Simplified</h1>
+                    <p>AuraMed provides hospitals with a comprehensive platform to manage patients, appointments, inventory, and staff efficiently in one place.</p>
+                    <div class="d-flex flex-wrap">
+                        <a id="demoButton" class="btn btn-primary me-3 mb-3 mb-md-0">Request Demo</a>
+                        <a href="#learn-more" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-in">
+                    <img src="static/hospital-dashboard.png" alt="AuraMed Hospital Dashboard" class="img-fluid hero-img rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 my-5" id="features">
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <h2 class="mb-3">Hospital Management Features</h2>
+                <p class="text-muted mx-auto" style="max-width: 700px;">Discover how AuraMed can transform your hospital operations with these powerful features.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4 fade-in">
+                    <div class="feature-card">
+                        <div class="feature-icon icon-primary">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h3>Bed Management</h3>
+                        <p>Real-time tracking of bed availability and occupancy across all departments.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4 fade-in">
+                    <div class="feature-card">
+                        <div class="feature-icon icon-secondary">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3>Appointment Scheduling</h3>
+                        <p>Efficiently manage patient appointments and doctor schedules in one system.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4 fade-in">
+                    <div class="feature-card">
+                        <div class="feature-icon icon-accent">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <h3>Inventory Management</h3>
+                        <p>Track medical supplies, medications, and equipment with automated alerts for low stock.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4 fade-in">
+                    <div class="feature-card">
+                        <div class="feature-icon icon-primary">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h3>Staff Management</h3>
+                        <p>Organize doctor profiles, specializations, and availability for better resource allocation.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4 fade-in">
+                    <div class="feature-card">
+                        <div class="feature-icon icon-secondary">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Telemedicine Integration</h3>
+                        <p>Conduct virtual consultations and follow-ups with integrated video calling.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4 fade-in">
+                    <div class="feature-card">
+                        <div class="feature-icon icon-accent">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Analytics Dashboard</h3>
+                        <p>Gain insights into hospital performance with comprehensive data visualization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-5 bg-light" id="benefits">
+        <div class="container">
+            <div class="text-center mb-5 fade-in">
+                <h2 class="mb-3">Why Choose AuraMed</h2>
+                <p class="text-muted mx-auto" style="max-width: 700px;">AuraMed offers unique advantages that help hospitals improve efficiency, reduce costs, and enhance patient care.</p>
+            </div>
+            
+            <div class="row align-items-center fade-in">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="static/hospital-benefits.jpg" alt="Hospital Benefits" class="img-fluid rounded shadow">
+                </div>                
+                <div class="col-lg-6">
+                    <div class="d-flex mb-4">
+                        <div class="me-4">
+                            <div style="width: 50px; height: 50px; background-color: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">1</div>
+                        </div>
+                        <div>
+                            <h4>Streamlined Operations</h4>
+                            <p>Reduce administrative burden with automated workflows and centralized information management.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="me-4">
+                            <div style="width: 50px; height: 50px; background-color: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">2</div>
+                        </div>
+                        <div>
+                            <h4>Enhanced Patient Experience</h4>
+                            <p>Provide better care with improved appointment scheduling, reduced wait times, and better communication.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="me-4">
+                            <div style="width: 50px; height: 50px; background-color: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">3</div>
+                        </div>
+                        <div>
+                            <h4>Data-Driven Decisions</h4>
+                            <p>Make informed decisions with real-time analytics and comprehensive reporting capabilities.</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex">
+                        <div class="me-4">
+                            <div style="width: 50px; height: 50px; background-color: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">4</div>
+                        </div>
+                        <div>
+                            <h4>Cost Reduction</h4>
+                            <p>Optimize resource allocation, reduce waste, and improve financial performance with our integrated platform.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6 mb-4 mb-md-0 fade-in">
+                    <div class="stats-card">
+                        <div class="stats-number" data-count="500">0</div>
+                        <p class="mb-0">Partner Hospitals</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6 mb-4 mb-md-0 fade-in">
+                    <div class="stats-card">
+                        <div class="stats-number" data-count="30">0</div>
+                        <p class="mb-0">% Efficiency Increase</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6 fade-in">
+                    <div class="stats-card">
+                        <div class="stats-number" data-count="95">0</div>
+                        <p class="mb-0">% Satisfaction Rate</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6 fade-in">
+                    <div class="stats-card">
+                        <div class="stats-number" data-count="24">0</div>
+                        <p class="mb-0">Hour Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="get-started">
+        <div class="container">
+            <div class="cta text-center fade-in">
+                <h2>Ready to Transform Your Hospital Management?</h2>
+                <p class="mb-4 mx-auto" style="max-width: 700px;">Join hundreds of hospitals that have already improved their operations with AuraMed's comprehensive healthcare platform.</p>
+                <div class="d-flex justify-content-center flex-wrap">
+                    <a href="/hoslogin" class="btn btn-light me-3 mb-3 mb-md-0">Get Started Now</a>
+                    <a href="#contact" class="btn btn-outline-light">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <a class="navbar-brand mb-4 d-inline-block" href="#">
+                        <span style="color: var(--primary);">Aura</span><span style="color: var(--secondary);">Med</span>
+                    </a>
+                    <p class="mb-4">Transforming hospital management with technology to make healthcare more efficient, accessible, and patient-centered.</p>
+                    <div class="mb-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <h5 class="footer-heading">Company</h5>
+                    <a href="#" class="footer-link">About Us</a>
+                    <a href="#" class="footer-link">Our Team</a>
+                    <a href="#" class="footer-link">Careers</a>
+                    <a href="#" class="footer-link">Press</a>
+                    <a href="#" class="footer-link">Blog</a>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <h5 class="footer-heading">Services</h5>
+                    <a href="#" class="footer-link">Hospital Management</a>
+                    <a href="#" class="footer-link">Telemedicine</a>
+                    <a href="#" class="footer-link">Inventory Control</a>
+                    <a href="#" class="footer-link">Staff Management</a>
+                    <a href="#" class="footer-link">Analytics</a>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <h5 class="footer-heading">Support</h5>
+                    <a href="#" class="footer-link">Help Center</a>
+                    <a href="#" class="footer-link">FAQs</a>
+                    <a href="#" class="footer-link">Contact Us</a>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+                
+                <div class="col-lg-2 col-md-12">
+                    <h5 class="footer-heading">Contact</h5>
+                    <p class="mb-2"><i class="fas fa-map-marker-alt me-2" style="color: var(--primary);"></i> 123 Healthcare Ave, Medical District</p>
+                    <p class="mb-2"><i class="fas fa-phone-alt me-2" style="color: var(--primary);"></i> +918582892588</p>
+                    <p class="mb-2"><i class="fas fa-envelope me-2" style="color: var(--primary);"></i> auramed1628@gmail.com</p>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="text-center copyright">
+                <p>&copy; 2023 AuraMed. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Fade-in animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Animate stats numbers
+            const statsNumbers = document.querySelectorAll('.stats-number');
+            
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const count = parseFloat(target.getAttribute('data-count'));
+                        let current = 0;
+                        const increment = count / 50;
+                        const isDecimal = count % 1 !== 0;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= count) {
+                                target.textContent = isDecimal ? count.toFixed(1) : Math.round(count);
+                                clearInterval(timer);
+                            } else {
+                                target.textContent = isDecimal ? current.toFixed(1) : Math.round(current);
+                            }
+                        }, 30);
+                        
+                        statsObserver.unobserve(target);
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+            
+            statsNumbers.forEach(number => {
+                statsObserver.observe(number);
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '10px 0';
+                navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.padding = '15px 0';
+                navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.05)';
+            }
+        });
+
+        // Button event listeners
+        const loginButton = document.getElementById("loginButton");
+        const registerButton = document.getElementById("registerButton");
+        const demoButton = document.getElementById("demoButton");
+
+        loginButton.addEventListener("click", () => {
+            window.location.href = "/hoslogin";
+        });
+
+        registerButton.addEventListener("click", () => {
+            window.location.href = "/hoslogin";
+        });
+
+        demoButton.addEventListener("click", () => {
+            // You can replace this with a demo request form or contact page
+            window.location.href = "#contact";
+        });
+    </script>
+</body>
+</html>

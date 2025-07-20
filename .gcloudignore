@@ -1,0 +1,17 @@
+# Ignore compiled Python files and cache
+__pycache__/
+*.pyc
+
+# Ignore machine learning models
+*.joblib
+
+# Ignore images
+*.png
+*.jpg
+*.jpeg
+
+# Ignore audio files
+*.wav
+
+# Ignore PDF files
+*.pdf
